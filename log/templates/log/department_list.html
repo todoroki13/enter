@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr class="text-center">
+      <th>班級/科系</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for de in department_list %}
+    <tr class="text-center">
+      <td>
+        <a href="department/{{ de.id }}">{{ de.depart }}</a>
+        <a href="admission/{{ de.admits.id }}">({{ de.admits }})</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'pagination.html' %}
+{% endblock %}

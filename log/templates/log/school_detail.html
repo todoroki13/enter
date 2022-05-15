@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>學校：{{school.name}}</h2>
+<h4>說明：{{school.sdesc|linebreaks}}</h4>
+<h4>學校類型：{{school.get_type_display}}</h4>
+<h4>公/私立：{{school.get_pp_display}}</h4>
+<br>
+<h4>此學校的科系/班級有：</h4>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th style="width: 180px;">班級/科系</th>
+      <th>學校</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for de in school.departs.all %}
+      <tr >
+        <td><a href="{% url 'log_view_department' de.id %}">{{ de.depart }}</a><a href="{% url 'log_view_admission' de.admits.id %}">({{de.admits}})</a></td>
+        <td>|
+        {% for sc in de.schools.all %}
+        {% if sc.id == school.id %}
+          <a href="{% url 'log_view_school' sc.id %}" style="color: red;">{{sc.name}}</a> |
+        {% else %}
+          <a href="{% url 'log_view_school' sc.id %}">{{sc.name}}</a> |
+        {% endif %}
+          
+        {% endfor %}
+        </td>
+      </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

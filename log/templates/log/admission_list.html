@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr class="text-center">
+      <th>入學管道</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ad in admission_list %}
+    <tr class="text-center">
+      <td>
+        <a href="admission/{{ ad.id }}">{{ ad.admit }}</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'pagination.html' %}
+{% endblock %}

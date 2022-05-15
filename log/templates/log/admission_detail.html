@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load filter %}
+{% block content %}
+<h2>入學方法：{{admission.admit}}</h2>
+<a href="{% url 'log_update_admission' admission.id %}">編輯</a>
+<h3>說明：{{admission.adesc|linebreaks}}</h3>
+<h4>根據此方法入學的學校/系有：</h4>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th style="width: 90px;">班級/科系</th>
+      <th>學校</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for de in admission.department_set.all %}
+      <tr >
+        <td><a href="/enter/department/{{ de.id }}">{{ de.depart }}</a></td>
+        <td>|
+        {% for sc in de.schools.all %}
+          <a href="{% url 'log_view_school' sc.id %}">{{sc.name}}</a> |
+        {% endfor %}
+        </td>
+      </tr>
+  </tbody>
+  {% endfor %}
+</table>
+<h4>說明文件</h4>
+<a href="{{ admission.afile|embed }}" target="_blank">{{ admission.afile|embed }}</a>
+<iframe src="{{ admission.afile|embed }}/preview" frameborder="0" style="height: 900px; width: 90%"></iframe>
+{% endblock %}

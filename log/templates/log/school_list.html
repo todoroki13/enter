@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr class="text-center">
+      <th>學校</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sc in school_list %}
+    <tr class="text-center">
+      <td>
+        <a href="school/{{ sc.id }}">{{ sc.name }}</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'pagination.html' %}
+{% endblock %}
