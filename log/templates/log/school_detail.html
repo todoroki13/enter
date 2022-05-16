@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load filter %}
 {% block content %}
 <h2>學校：{{school.name}}</h2>
+<a href="{% url 'log_update_school' school.id %}">編輯</a>
+<a href="{% url 'log_delete_school' school.id %}">刪除</a>
 <h4>說明：{{school.sdesc|linebreaks}}</h4>
 <h4>學校類型：{{school.get_type_display}}</h4>
 <h4>公/私立：{{school.get_pp_display}}</h4>
@@ -31,4 +34,11 @@
   </tbody>
   {% endfor %}
 </table>
+<h4>說明文件</h4>
+{% if school.sfile %}
+<a href="{{ school.sfile|embed }}" target="_blank">{{ school.sfile|embed }}</a>
+<iframe src="{{ school.sfile|embed }}/preview" frameborder="0" style="height: 900px; width: 90%"></iframe>
+{% else %}
+<p>無</p>
+{% endif %}
 {% endblock %}

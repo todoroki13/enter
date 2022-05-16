@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h1>大直高中國九入學方法查詢系統<span><a href="/enter">首頁</a></span></h1>
+    <h1>大直高中國九入學查詢系統 <span><a href="/enter">回首頁</a></span></h1>
     <a href="/enter/admission">入學方法</a> | 
     <a href="/enter/school">學校</a> | 
     <a href="/enter/department">班級/科系</a>
+    <a href="/enter/admission/create">新增入學方法</a> | 
+    <a href="/enter/school/create">新增學校</a> | 
+    <a href="/enter/department/create">新增班級/科系</a>
     <hr>
     {% block content %}{% endblock %}
     

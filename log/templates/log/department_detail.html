@@ -1,13 +1,16 @@
 {% extends "base.html" %}
+{% load filter %}
 {% block content %}
 <h2>班級/科系：{{department.depart}} <a href="{% url 'log_view_admission' department.admits.id %}">({{department.admits}})</a> </h2>
+<a href="{% url 'log_update_department' department.id %}">編輯</a>
+<a href="{% url 'log_delete_department' department.id %}">刪除</a>
 <h4>說明：{{department.ddesc|linebreaks}}</h4>
 <br>
 <h4>包含此班級/科系的學校有：</h4>
 <table class="table table-sm table-hover">
   <thead>
     <tr>
-      <th style="width: 90px;">班級/科系</th>
+      <th style="width: 200px;">班級/科系</th>
       <th>學校</th>
       <th>學校類型</th>
       <th>公私立</th>
@@ -16,7 +19,7 @@
   <tbody>
     {% for sc in department.schools.all %}
     <tr>
-      <td>{{department.depart}}</td>
+      <td>{{department.depart}}({{department.admits}})</td>
       <td><a href="{% url 'log_view_school' sc.id %}">{{ sc.name }}</a></td>
       <td>{{sc.get_type_display}}</td>
       <td>{{sc.get_pp_display}}</td>
@@ -24,4 +27,11 @@
     {% endfor %}
   </tbody>
 </table>
+<h4>說明文件</h4>
+{% if department.dfile %}
+<a href="{{ department.dfile|embed }}" target="_blank">{{ department.dfile|embed }}</a>
+<iframe src="{{ department.dfile|embed }}/preview" frameborder="0" style="height: 900px; width: 90%"></iframe>
+{% else %}
+<p>無</p>
+{% endif %}
 {% endblock %}

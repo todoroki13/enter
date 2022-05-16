@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    確認刪除班級/科系[ <strong>{{ department.depart }}({{department.admits}})</strong> ]？<br>
+    其相關紀錄將會被刪除！<br><br>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="確認刪除">
+    <a href="/enter/department" class="cancel">取消刪除</a>
+</form>
+
+{% endblock  %}

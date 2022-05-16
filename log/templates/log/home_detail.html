@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>標題:{{home.htitle}}</h2>
+<h2>標題：{{home.htitle}}</h2>
+<h4>新增時間：{{home.htime|date:"Y/m/d"}}</h4>
 <h4>內容：{{home.hdesc|linebreaks}}</h4>
 {% endblock %}

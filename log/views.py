@@ -57,15 +57,6 @@ class LogCreateAdmission(CreateView):
     template_name = 'form.html'
     fields = ['admit','adesc','afile']
 
-    # def form_valid(self, form):
-    #     afile = form.cleaned_data['afile']
-    #     pre = Admission(afile = fields[2])
-    #     x = pre.find['/view']
-    #     pre = pre[0: x]
-    #     pre.save()
-    #     pre.afile.add(self.kwargs['aid'])
-    #     return super().form_valid(form)
-
     def get_success_url(self):
         return "/enter/admission/{}".format(self.object.id)
 
@@ -102,7 +93,7 @@ class LogViewDepartment(DetailView):
 class LogCreateDepartment(CreateView):
     model = Department
     template_name = 'form.html'
-    fields = ['depart','schools','admits','ddesc','dfile']
+    fields = ['depart','admits','schools','ddesc','dfile']
 
     def get_form(self):
         form = super().get_form()
@@ -117,7 +108,7 @@ class LogUpdateDepartment(UpdateView):
     model = Department
     template_name = 'form.html'
     pk_url_kwarg = 'did'
-    fields = ['depart','schools','admits','ddesc','dfile']
+    fields = ['depart','admits','schools','ddesc','dfile']
 
     def get_form(self):
         form = super().get_form()
@@ -161,7 +152,7 @@ class LogUpdateSchool(UpdateView):
     model = School
     template_name = 'form.html'
     pk_url_kwarg = 'sid'
-    fields = ['name','sdesc','type','pp','sflie']
+    fields = ['name','sdesc','type','pp','sfile']
 
     def get_success_url(self):
         return "/enter/school/{}".format(self.object.id)

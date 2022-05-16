@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import IntegerField
+from datetime import date
 
 # Create your models here.
 
@@ -7,7 +8,7 @@ from django.forms import IntegerField
 class Admission(models.Model):
 
     admit = models.CharField('入學管道', max_length=256)
-    adesc = models.TextField('說明', max_length=2048)
+    adesc = models.TextField('說明', max_length=2048, null=True, blank=True)
     afile = models.URLField('入學管道說明檔案', max_length=512, null=True, blank=True)
 
     def __str__(self):
@@ -29,7 +30,7 @@ class School(models.Model):
     ]
 
     name = models.CharField('學校名稱', max_length=256)
-    sdesc = models.TextField('說明', max_length=2048)
+    sdesc = models.TextField('說明', max_length=2048, null=True, blank=True)
     type = models.IntegerField('學校類型', default=0, choices=TYPE_OPTIONS)
     pp = models.IntegerField('公/私立', default=0, choices=PP_OPTIONS)
     sfile = models.URLField('學校說明檔案', max_length=512, null=True, blank=True)
@@ -41,9 +42,9 @@ class School(models.Model):
 class Department(models.Model):
     
     depart = models.CharField('科系/班級名稱', max_length=256)
-    schools = models.ManyToManyField(School, related_name='departs')
+    schools = models.ManyToManyField(School, related_name='departs', verbose_name='學校')
     admits = models.ForeignKey(Admission, on_delete = models.CASCADE, null=True, verbose_name='入學管道')
-    ddesc = models.TextField('說明', max_length=2048)
+    ddesc = models.TextField('說明', max_length=2048, null=True, blank=True)
     dfile = models.URLField('科系/班級說明檔案', max_length=512, null=True, blank=True)
 
     def __str__(self):
@@ -53,3 +54,4 @@ class Home(models.Model):
 
     htitle = models.CharField('網站消息標題', max_length=256)
     hdesc = models.TextField('網站消息內容', max_length=2048)
+    htime = models.DateField('新增時間', default=date.today)
