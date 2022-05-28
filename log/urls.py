@@ -6,6 +6,7 @@ urlpatterns = [
     path('<int:hid>', HomeDetail.as_view(), name='detail_home'),
     path('create', HomeCreate.as_view(), name='create_home'),
     path('update/<int:hid>', HomeUpdate.as_view(), name='update_home'),
+    path('delete/<int:hid>', HomeDelete.as_view(), name='delete_home'),
     path('admission', LogListAdmission.as_view(), name='log_list_admission'),
     path('admission/<int:aid>', LogViewAdmission.as_view(), name='log_view_admission'),
     path('admission/create', LogCreateAdmission.as_view(), name='log_create_admission'),

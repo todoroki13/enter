@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>標題：{{home.htitle}}</h2>
+<a href="{% url 'update_home' home.id %}">編輯</a>
+<a href="{% url 'delete_home' home.id %}">刪除</a>
 <h4>新增時間：{{home.htime|date:"Y/m/d"}}</h4>
 <h4>內容：{{home.hdesc|linebreaks}}</h4>
 {% endblock %}

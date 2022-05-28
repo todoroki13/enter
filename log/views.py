@@ -20,7 +20,7 @@ class HomeDetail(DetailView):
     model = Home
     pk_url_kwarg = 'hid'
 
-class HomeCreate(CreateView):
+class HomeCreate(LoginRequiredMixin, CreateView):
     model = Home
     template_name = 'form.html'
     pk_url_kwarg = 'hid'
@@ -29,7 +29,7 @@ class HomeCreate(CreateView):
     def get_success_url(self):
         return "/enter"
 
-class HomeUpdate(UpdateView):
+class HomeUpdate(LoginRequiredMixin, UpdateView):
     model = Home
     template_name = 'form.html'
     pk_url_kwarg = 'hid'
@@ -37,6 +37,11 @@ class HomeUpdate(UpdateView):
 
     def get_success_url(self):
         return "/enter"
+
+class HomeDelete(LoginRequiredMixin, DeleteView):
+    model = Home
+    pk_url_kwarg = 'hid'
+    success_url = "/enter"
 
 class LogListAdmission(ListView):
     model = Admission
@@ -52,7 +57,7 @@ class LogViewAdmission(DetailView):
         admission.save()
         return admission
 
-class LogCreateAdmission(CreateView):
+class LogCreateAdmission(LoginRequiredMixin, CreateView):
     model = Admission
     template_name = 'form.html'
     fields = ['admit','adesc','afile']
@@ -60,7 +65,7 @@ class LogCreateAdmission(CreateView):
     def get_success_url(self):
         return "/enter/admission/{}".format(self.object.id)
 
-class LogUpdateAdmission(UpdateView):
+class LogUpdateAdmission(LoginRequiredMixin, UpdateView):
     model = Admission
     template_name = 'form.html'
     pk_url_kwarg = 'aid'
@@ -69,7 +74,7 @@ class LogUpdateAdmission(UpdateView):
     def get_success_url(self):
         return "/enter/admission/{}".format(self.object.id)
 
-class LogDeleteAdmission(DeleteView):
+class LogDeleteAdmission(LoginRequiredMixin, DeleteView):
     model = Admission
     pk_url_kwarg = 'aid'
     success_url = "/enter/admission"
@@ -90,7 +95,7 @@ class LogViewDepartment(DetailView):
         dep.save()
         return dep
 
-class LogCreateDepartment(CreateView):
+class LogCreateDepartment(LoginRequiredMixin, CreateView):
     model = Department
     template_name = 'form.html'
     fields = ['depart','admits','schools','ddesc','dfile']
@@ -104,7 +109,7 @@ class LogCreateDepartment(CreateView):
     def get_success_url(self):
         return "/enter/department/{}".format(self.object.id)
 
-class LogUpdateDepartment(UpdateView):
+class LogUpdateDepartment(LoginRequiredMixin, UpdateView):
     model = Department
     template_name = 'form.html'
     pk_url_kwarg = 'did'
@@ -119,7 +124,7 @@ class LogUpdateDepartment(UpdateView):
     def get_success_url(self):
         return "/enter/department/{}".format(self.object.id)
 
-class LogDeleteDepartment(DeleteView):
+class LogDeleteDepartment(LoginRequiredMixin, DeleteView):
     model = Department
     pk_url_kwarg = 'did'
     success_url = "/enter/department"
@@ -140,7 +145,7 @@ class LogViewSchool(DetailView):
         dep.save()
         return dep
 
-class LogCreateSchool(CreateView):
+class LogCreateSchool(LoginRequiredMixin, CreateView):
     model = School
     template_name = 'form.html'
     fields = ['name','sdesc','type','pp','sfile']
@@ -148,7 +153,7 @@ class LogCreateSchool(CreateView):
     def get_success_url(self):
         return "/enter/school/{}".format(self.object.id)
 
-class LogUpdateSchool(UpdateView):
+class LogUpdateSchool(LoginRequiredMixin, UpdateView):
     model = School
     template_name = 'form.html'
     pk_url_kwarg = 'sid'
@@ -157,7 +162,7 @@ class LogUpdateSchool(UpdateView):
     def get_success_url(self):
         return "/enter/school/{}".format(self.object.id)
 
-class LogDeleteSchool(DeleteView):
+class LogDeleteSchool(LoginRequiredMixin, DeleteView):
     model = School
     pk_url_kwarg = 'sid'
     success_url = "/enter/school"
