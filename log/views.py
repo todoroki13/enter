@@ -29,7 +29,7 @@ class HomeCreate(LoginRequiredMixin, CreateView):
     fields = ['htitle','hdesc','hlink1name','hlink1','hlink2name','hlink2']
 
     def get_success_url(self):
-        return "/enter"
+        return "/enter/{}".format(self.object.id)
 
 class HomeUpdate(LoginRequiredMixin, UpdateView):
     model = Home

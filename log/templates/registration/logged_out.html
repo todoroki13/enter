@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p class="alert alert-info">您已登出!!</p>  
-<a href="{% url 'login'%}" class="btn btn-primary">請按此處重新<i class="fas fa-sign-in-alt"></i> 登入</a>
+<p class="alert alert-secondary">您已登出，請登入以使用需權限功能。</p>  
+<a href="{% url 'login'%}" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> 請按此處重新登入</a>
 {% endblock %}

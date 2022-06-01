@@ -152,6 +152,7 @@ p{
 .createnews{
     font-size: 20px;
     border: rgb(84, 235, 255) 2px solid;
+    border-radius: 5px;
     margin: 0 0 0 10px;
     color: rgb(84, 235, 255);
     text-decoration: none;

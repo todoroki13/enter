@@ -1,20 +1,20 @@
 {% if is_paginated %}
-  {% with btn_class="btn btn-sm btn-outline-primary" %}
+  {% with btn_class="btn btn-sm btn-outline-secondary" %}
   <div>
   {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info">
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">
       <i class="fas fa-chevron-circle-left"></i>上一頁
     </a>
   {% endif %}
   {% for page in paginator.page_range %}
     {% if page == page_obj.number %}
-      <button class="btn btn-outline-info" disabled>{{ page }}</button>
+      <button class="btn btn-outline-secondary" disabled>{{ page }}</button>
     {% else %}
-      <a href="?page={{ page }}" class="btn btn-outline-info">{{ page }}</a>
+      <a href="?page={{ page }}" class="btn btn-outline-secondary">{{ page }}</a>
     {% endif %}
   {% endfor %}
   {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info">
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">
       下一頁<i class="fas fa-chevron-circle-right"></i>
     </a>
   {% endif %}
