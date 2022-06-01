@@ -15,6 +15,8 @@ from django import forms
 
 class HomeList(ListView):
     model = Home
+    ordering = ['-id']
+    paginate_by = 5
 
 class HomeDetail(DetailView):
     model = Home
@@ -24,7 +26,7 @@ class HomeCreate(LoginRequiredMixin, CreateView):
     model = Home
     template_name = 'form.html'
     pk_url_kwarg = 'hid'
-    fields = ['htitle','hdesc']
+    fields = ['htitle','hdesc','hlink1name','hlink1','hlink2name','hlink2']
 
     def get_success_url(self):
         return "/enter"
@@ -33,7 +35,7 @@ class HomeUpdate(LoginRequiredMixin, UpdateView):
     model = Home
     template_name = 'form.html'
     pk_url_kwarg = 'hid'
-    fields = ['htitle','hdesc']
+    fields = ['htitle','hdesc','hlink1name','hlink1','hlink2name','hlink2']
 
     def get_success_url(self):
         return "/enter"
@@ -48,6 +50,19 @@ class LogListAdmission(ListView):
     ordering = ['-id']
     paginate_by = 20
 
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            item = Admission.objects.filter(admit__icontains=query)
+        else:
+            item = Admission.objects
+        return item.order_by('admit')
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['query'] = self.request.GET.get('query') or ""
+        return ctx
+
 class LogViewAdmission(DetailView):
     model = Admission
     pk_url_kwarg = 'aid'
@@ -60,7 +75,7 @@ class LogViewAdmission(DetailView):
 class LogCreateAdmission(LoginRequiredMixin, CreateView):
     model = Admission
     template_name = 'form.html'
-    fields = ['admit','adesc','afile']
+    fields = '__all__'
 
     def get_success_url(self):
         return "/enter/admission/{}".format(self.object.id)
@@ -69,7 +84,7 @@ class LogUpdateAdmission(LoginRequiredMixin, UpdateView):
     model = Admission
     template_name = 'form.html'
     pk_url_kwarg = 'aid'
-    fields = ['admit','adesc','afile']
+    fields = '__all__'
 
     def get_success_url(self):
         return "/enter/admission/{}".format(self.object.id)
@@ -83,8 +98,21 @@ class LogDeleteAdmission(LoginRequiredMixin, DeleteView):
 
 class LogListDepartment(ListView):
     model = Department
-    ordering = ['-id']
+    ordering = ['depart']
     paginate_by = 20
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            item = Department.objects.filter(depart__icontains=query)
+        else:
+            item = Department.objects
+        return item.order_by('depart')
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['query'] = self.request.GET.get('query') or ""
+        return ctx
 
 class LogViewDepartment(DetailView):
     model = Department
@@ -98,7 +126,7 @@ class LogViewDepartment(DetailView):
 class LogCreateDepartment(LoginRequiredMixin, CreateView):
     model = Department
     template_name = 'form.html'
-    fields = ['depart','admits','schools','ddesc','dfile']
+    fields = ['depart','admits','schools','ddesc','dfile','dlink1name','dlink1','dlink2name','dlink2']
 
     def get_form(self):
         form = super().get_form()
@@ -113,7 +141,7 @@ class LogUpdateDepartment(LoginRequiredMixin, UpdateView):
     model = Department
     template_name = 'form.html'
     pk_url_kwarg = 'did'
-    fields = ['depart','admits','schools','ddesc','dfile']
+    fields = ['depart','admits','schools','ddesc','dfile','dlink1name','dlink1','dlink2name','dlink2']
 
     def get_form(self):
         form = super().get_form()
@@ -136,6 +164,19 @@ class LogListSchool(ListView):
     ordering = ['-id']
     paginate_by = 20
 
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            item = School.objects.filter(name__icontains=query)
+        else:
+            item = School.objects
+        return item.order_by('name')
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['query'] = self.request.GET.get('query') or ""
+        return ctx
+
 class LogViewSchool(DetailView):
     model = School
     pk_url_kwarg = 'sid'
@@ -148,7 +189,7 @@ class LogViewSchool(DetailView):
 class LogCreateSchool(LoginRequiredMixin, CreateView):
     model = School
     template_name = 'form.html'
-    fields = ['name','sdesc','type','pp','sfile']
+    fields = '__all__'
 
     def get_success_url(self):
         return "/enter/school/{}".format(self.object.id)
@@ -157,7 +198,7 @@ class LogUpdateSchool(LoginRequiredMixin, UpdateView):
     model = School
     template_name = 'form.html'
     pk_url_kwarg = 'sid'
-    fields = ['name','sdesc','type','pp','sfile']
+    fields = '__all__'
 
     def get_success_url(self):
         return "/enter/school/{}".format(self.object.id)

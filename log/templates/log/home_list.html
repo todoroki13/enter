@@ -3,39 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible  " content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <title>大直高中國九入學查詢系統-首頁</title>
+    <title>大直高中國九入學查詢系統</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'stylehome.css' %}">
 </head>
 <body>
-    <h1>大直高中國九入學查詢系統</h1>
-    <div class="adblock"><a href="/enter/admission">入學方法</a></div>
-    <div class="scblock"><a href="/enter/school">學校</a></div>
-    <div class="deblock"><a href="/enter/department">班級/科系</a></div>
-    <hr>
-    <p>網站消息：</p>
-    <a href="/enter/create">新增消息</a>
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr class="text-center">
-            <th>標題</th>
-            <th>新增時間</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for ds in home_list %}
-            <tr class="text-center">
-            <td>
-                <a href="{{ ds.id }}">{{ ds.htitle }}</a>
-            </td>
-            <td>{{ds.htime|date:"Y/m/d"}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>大直高中國九入學查詢</h1>
+    <p>請點選欲前往的查詢分類</p>
+    <div class="flexbox"><div class="box">
+        <div class="adblock" onclick="window.location='/enter/admission';"><a href="/enter/admission" class="biga">入學方法➔</a></div>
+        <div class="scblock" onclick="window.location='/enter/school';"><a href="/enter/school" class="biga">學校➔</a></div>
+        <div class="deblock" onclick="window.location='/enter/department';"><a href="/enter/department" class="biga">班級/科系➔</a></div>
+    </div></div>
+    <div class="flexbox"><div class="box">
+        {% if user.is_authenticated %}
+        <div class="login" onclick="window.location='/accounts/logout/';">
+            <a href="/accounts/logout/" class="biga">行政人員<br>登出➔</a>
+        </div>
+        {% else %}
+        <div class="login" onclick="window.location='/accounts/login/';">
+            <a href="/accounts/login/" class="biga">行政人員<br>登入➔</a>
+        </div>
+        {% endif %}
+        <div class="news">
+            <label>網站消息</label>
+            {% if user.is_authenticated %}
+            <a href="/enter/create" class="createnews">點我新增消息</a>
+            {% endif %}
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="text-center">
+                    <th>標題</th>
+                    <th>新增時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ds in home_list %}
+                    <tr class="text-center">
+                    <td>
+                        <a href="{{ ds.id }}" class="tablea">{{ ds.htitle }}</a>
+                    </td>
+                    <td>{{ds.htime|date:"Y/m/d"}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% include 'pagination.html' %}
+        </div>
+    </div></div>
+    
+
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

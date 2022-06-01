@@ -1,0 +1,175 @@
+*{
+    /* border: black 1px solid; */
+    font-family: 微軟正黑體;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 20px 50px;
+}
+
+h1{
+    font-size: 70px;
+    padding: 0 5px;
+}
+
+p{
+    font-size: 20px;
+    padding: 0 8px;
+    margin: 0;
+}
+
+.flexbox{
+    display: flex;
+    justify-content: center;
+}
+
+.box{
+    display: flex;
+    width: 100%;
+}
+
+.adblock, .scblock, .deblock{
+    padding: 20px 25px;
+    margin: 10px;
+    min-height: 200px;
+    width: 33%;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.adblock{
+    border: rgb(255, 65, 65) 5px solid;
+}
+
+.adblock:hover{
+    background-color: rgb(255, 65, 65);
+    border: white 5px solid;
+    box-shadow:5px 5px 35px rgba(0,0,0,0.3);
+    transform: translate(-5px,-5px);
+}
+
+.adblock a{
+    color: rgb(255, 65, 65);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.adblock:hover a{
+    color: white;
+}
+
+.scblock{
+    border: rgb(102, 102, 255) 5px solid;
+}
+
+.scblock:hover{
+    background-color: rgb(102, 102, 255);
+    border: white 5px solid;
+    box-shadow:5px 5px 35px rgba(0,0,0,0.3);
+    transform: translate(-5px,-5px);
+}
+
+.scblock a{
+    color: rgb(102, 102, 255);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.scblock:hover a{
+    color: white;
+}
+
+.deblock{
+    border: rgb(255, 187, 0) 5px solid;
+}
+
+.deblock:hover{
+    background-color: rgb(255, 187, 0);
+    border: white 5px solid;
+    box-shadow:5px 5px 35px rgba(0,0,0,0.3);
+    transform: translate(-5px,-5px);
+}
+
+.deblock a{
+    color: rgb(255, 187, 0);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.deblock:hover a{
+    color: white;
+}
+
+.biga{
+    font-size: 50px;
+}
+
+
+.login{
+    border: rgb(61, 158, 65) 5px solid;
+    padding: 20px 25px;
+    margin: 10px;
+    min-height: 200px;
+    flex: 2.5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login:hover{
+    background-color: rgb(61, 158, 65);
+    border: white 5px solid;
+    box-shadow:5px 5px 35px rgba(0,0,0,0.3);
+    transform: translate(-5px,-5px);
+}
+
+.login a{
+    color: rgb(61, 158, 65);
+    text-decoration: none;
+}
+
+.login:hover a{
+    color: white;
+}
+
+.news{
+    border: rgb(84, 235, 255) 5px solid;
+    padding: 20px 25px;
+    margin: 10px;
+    flex: 7.5;
+    border-radius: 20px;
+}
+
+.news label{
+    color: rgb(84, 235, 255);
+    font-size: 50px;
+}
+
+.createnews{
+    font-size: 20px;
+    border: rgb(84, 235, 255) 2px solid;
+    margin: 0 0 0 10px;
+    color: rgb(84, 235, 255);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.createnews:hover{
+    border: rgb(47, 172, 189) 2px solid;
+    color: rgb(47, 172, 189);
+    text-decoration: none;
+}
+
+.tablea{
+    color: rgb(47, 172, 189);
+    text-decoration: none;
+}
+
+.tablea:hover{
+    color: rgb(47, 172, 189);
+    text-decoration: underline;
+}

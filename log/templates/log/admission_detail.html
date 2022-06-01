@@ -26,6 +26,25 @@
   </tbody>
   {% endfor %}
 </table>
+
+<h4>參考連結</h4>
+{% if admission.alink1 %}
+  {% if admission.alink1name %}
+    <a href="{{ admission.alink1 }}" target="_blank">{{ admission.alink1name }}</a><br>
+  {% else %}
+    <a href="{{ admission.alink1 }}" target="_blank">{{ admission.alink1 }}</a><br>
+  {% endif %}
+  {% if admission.alink2 %}
+    {% if admission.alink2name %}
+      <a href="{{ admission.alink2 }}" target="_blank">{{ admission.alink2name }}</a><br>
+    {% else %}
+      <a href="{{ admission.alink2 }}" target="_blank">{{ admission.alink2 }}</a><br>
+    {% endif %}
+  {% endif %}
+{% else %}
+  <p>無</p>
+{% endif %}
+
 <h4>說明文件</h4>
 {% if admission.afile %}
 <a href="{{ admission.afile|embed }}" target="_blank">{{ admission.afile|embed }}</a>
@@ -33,4 +52,5 @@
 {% else %}
 <p>無</p>
 {% endif %}
+
 {% endblock %}

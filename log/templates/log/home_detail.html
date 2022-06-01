@@ -5,4 +5,23 @@
 <a href="{% url 'delete_home' home.id %}">刪除</a>
 <h4>新增時間：{{home.htime|date:"Y/m/d"}}</h4>
 <h4>內容：{{home.hdesc|linebreaks}}</h4>
+
+<h4>參考連結：</h4>
+{% if home.hlink1 %}
+  {% if home.hlink1name %}
+    <a href="{{ home.hlink1 }}" target="_blank">{{ home.hlink1name }}</a><br>
+  {% else %}
+    <a href="{{ home.hlink1 }}" target="_blank">{{ home.hlink1 }}</a><br>
+  {% endif %}
+  {% if department.dlink2 %}
+    {% if department.dlink2name %}
+      <a href="{{ home.hlink2 }}" target="_blank">{{ home.hlink2name }}</a><br>
+    {% else %}
+      <a href="{{ home.hlink2 }}" target="_blank">{{ home.hlink2 }}</a><br>
+    {% endif %}
+  {% endif %}
+{% else %}
+  <p>無</p>
+{% endif %}
+
 {% endblock %}

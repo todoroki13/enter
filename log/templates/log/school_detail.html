@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for de in school.departs.all %}
+    {% for de in school.departs.all|dictsort:"depart" %}
       <tr >
         <td><a href="{% url 'log_view_department' de.id %}">{{ de.depart }}</a><a href="{% url 'log_view_admission' de.admits.id %}">({{de.admits}})</a></td>
         <td>|
@@ -34,6 +34,25 @@
   </tbody>
   {% endfor %}
 </table>
+
+<h4>參考連結</h4>
+{% if school.slink1 %}
+  {% if school.slink1name %}
+    <a href="{{ school.slink1 }}" target="_blank">{{ school.slink1name }}</a><br>
+  {% else %}
+    <a href="{{ school.slink1 }}" target="_blank">{{ school.slink1 }}</a><br>
+  {% endif %}
+  {% if school.slink2 %}
+    {% if school.slink2name %}
+      <a href="{{ school.slink2 }}" target="_blank">{{ school.slink2name }}</a><br>
+    {% else %}
+      <a href="{{ school.slink2 }}" target="_blank">{{ school.slink2 }}</a><br>
+    {% endif %}
+  {% endif %}
+{% else %}
+  <p>無</p>
+{% endif %}
+
 <h4>說明文件</h4>
 {% if school.sfile %}
 <a href="{{ school.sfile|embed }}" target="_blank">{{ school.sfile|embed }}</a>

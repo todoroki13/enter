@@ -27,6 +27,25 @@
     {% endfor %}
   </tbody>
 </table>
+
+<h4>參考連結</h4>
+{% if department.dlink1 %}
+  {% if department.dlink1name %}
+    <a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1name }}</a><br>
+  {% else %}
+    <a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1 }}</a><br>
+  {% endif %}
+  {% if department.dlink2 %}
+    {% if department.dlink2name %}
+      <a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2name }}</a><br>
+    {% else %}
+      <a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2 }}</a><br>
+    {% endif %}
+  {% endif %}
+{% else %}
+  <p>無</p>
+{% endif %}
+
 <h4>說明文件</h4>
 {% if department.dfile %}
 <a href="{{ department.dfile|embed }}" target="_blank">{{ department.dfile|embed }}</a>
