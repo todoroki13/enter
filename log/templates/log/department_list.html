@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<h3>依照班級/科系分類查詢</h3>
 <form action=""  method="get">
   <div class="form-inline form-group">
     <label>篩選科系/班級：</label>
@@ -11,15 +12,22 @@
   <thead>
     <tr class="text-center">
       <th>班級/科系</th>
+      {% if user.is_authenticated %}
+      <th>操作</th>
+      <th>刪除</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
     {% for de in department_list %}
     <tr class="text-center">
       <td>
-        <a href="department/{{ de.id }}">{{ de.depart }}</a>
-        <a href="admission/{{ de.admits.id }}">({{ de.admits }})</a>
+        <a href="department/{{ de.id }}">{{ de.depart }}({{ de.admits }})</a>
       </td>
+      {% if user.is_authenticated %}
+      <td><a href="department/{{ de.id }}/update">編輯</a></td>
+      <td><a href="department/{{ de.id }}/delete">刪除</a></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

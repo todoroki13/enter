@@ -2,10 +2,12 @@
 {% load filter %}
 {% block content %}
 <h2>班級/科系：{{department.depart}} <a href="{% url 'log_view_admission' department.admits.id %}">({{department.admits}})</a> </h2>
-<a href="{% url 'log_update_department' department.id %}">編輯</a>
-<a href="{% url 'log_delete_department' department.id %}">刪除</a>
-<h4>說明：{{department.ddesc|linebreaks}}</h4>
-<br>
+{% if user.is_authenticated %}
+<a href="{% url 'log_update_department' department.id %}" class="chan">編輯</a>
+<a href="{% url 'log_delete_department' department.id %}" class="chan">刪除</a>
+{% endif %}
+<h4>說明：</h4>
+<div class="disc"><p>{{department.ddesc|linebreaks}}</p></div>
 <h4>包含此班級/科系的學校有：</h4>
 <table class="table table-sm table-hover">
   <thead>
@@ -28,28 +30,28 @@
   </tbody>
 </table>
 
-<h4>參考連結</h4>
+<h4>參考連結：</h4>
 {% if department.dlink1 %}
   {% if department.dlink1name %}
-    <a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1name }}</a><br>
+    <label>參考連結一：</label><a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1name }}</a><br>
   {% else %}
-    <a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1 }}</a><br>
+    <label>參考連結一：</label><a href="{{ department.dlink1 }}" target="_blank">{{ department.dlink1 }}</a><br>
   {% endif %}
   {% if department.dlink2 %}
     {% if department.dlink2name %}
-      <a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2name }}</a><br>
+    <label>參考連結二：</label><a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2name }}</a><br>
     {% else %}
-      <a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2 }}</a><br>
+      <label>參考連結二：</label><a href="{{ department.dlink2 }}" target="_blank">{{ department.dlink2 }}</a><br>
     {% endif %}
   {% endif %}
 {% else %}
   <p>無</p>
 {% endif %}
 
-<h4>說明文件</h4>
+<h4>說明文件：</h4>
 {% if department.dfile %}
 <a href="{{ department.dfile|embed }}" target="_blank">{{ department.dfile|embed }}</a>
-<iframe src="{{ department.dfile|embed }}/preview" frameborder="0" style="height: 900px; width: 90%"></iframe>
+<iframe src="{{ department.dfile|embed }}/preview" frameborder="0" style="height: 900px; width: 100%"></iframe>
 {% else %}
 <p>無</p>
 {% endif %}

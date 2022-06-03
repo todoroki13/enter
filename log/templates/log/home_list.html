@@ -11,6 +11,7 @@
     <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
+    <div class="wrapper">
     <h1>大直高中國九入學查詢</h1>
     <p>請點選欲前往的查詢分類</p>
     <div class="flexbox"><div class="box">
@@ -38,6 +39,10 @@
                     <tr class="text-center">
                     <th>標題</th>
                     <th>新增時間</th>
+                    {% if user.is_authenticated %}
+                    <th>操作</th>
+                    <th>刪除</th>
+                    {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +52,10 @@
                         <a href="{{ ds.id }}" class="tablea">{{ ds.htitle }}</a>
                     </td>
                     <td>{{ds.htime|date:"Y/m/d"}}</td>
+                    {% if user.is_authenticated %}
+                    <td><a href="update/{{ ds.id }}" class="tablea">編輯</a></td>
+                    <td><a href="delete/{{ ds.id }}" class="tablea">刪除</a></td>
+                    {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -55,8 +64,20 @@
         </div>
     </div></div>
     
+    <div class="down"></div>
+    <footer class="footer">
+        <a href="https://web.dcsh.tp.edu.tw/" target="_blank">臺北市立大直高級中學</a>
+        <p>|</p>
+        <p>110學年度</p>
+        <p>|</p>
+        <p>校定必修專題寫作</p>
+        <p>|</p>
+        <a href="https://ecourse.dcsh.tp.edu.tw/enrol/index.php?id=683" target="_blank">網站規畫與建置實務</a>
+        <p>|</p>
+        <a href="https://github.com/todoroki13/enter" target="_blank">GitHub</a>
+    </footer>
 
-    
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

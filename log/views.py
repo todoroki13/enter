@@ -38,7 +38,7 @@ class HomeUpdate(LoginRequiredMixin, UpdateView):
     fields = ['htitle','hdesc','hlink1name','hlink1','hlink2name','hlink2']
 
     def get_success_url(self):
-        return "/enter"
+        return "/enter/{}".format(self.object.id)
 
 class HomeDelete(LoginRequiredMixin, DeleteView):
     model = Home
@@ -168,6 +168,18 @@ class LogListSchool(ListView):
         query = self.request.GET.get('query')
         if query:
             item = School.objects.filter(name__icontains=query)
+            if query == '高中' or query == '高' or query == '中':
+                item = item | School.objects.filter(type__icontains=0)
+            if query == '高職' or query == '高' or query == '職':
+                item = item | School.objects.filter(type__icontains=1)
+            if query == '五專' or query == '五' or query == '專':
+                item = item | School.objects.filter(type__icontains=2)
+            if query == '綜高' or query == '綜' or query == '高':
+                item = item | School.objects.filter(type__icontains=3)
+            if query == '公立' or query == '公' or query == '立':
+                item = item | School.objects.filter(pp__icontains=0)
+            if query == '私立' or query == '私' or query == '立':
+                item = item | School.objects.filter(pp__icontains=1)
         else:
             item = School.objects
         return item.order_by('name')

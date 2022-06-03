@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<h3>依照學校分類查詢</h3>
 <form action=""  method="get">
   <div class="form-inline form-group">
     <label>篩選學校：</label>
@@ -7,10 +8,17 @@
     <input type="submit" class="form-control btn btn-primary" value="篩選"/>
   </div>  
 </form>
+<label>(亦可輸入學校類型、公立/私立查詢)</label>
 <table class="table table-sm table-hover">
   <thead>
     <tr class="text-center">
       <th>學校</th>
+      <th>學校類型</th>
+      <th>公/私立</th>
+      {% if user.is_authenticated %}
+      <th>操作</th>
+      <th>刪除</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -19,6 +27,12 @@
       <td>
         <a href="school/{{ sc.id }}">{{ sc.name }}</a>
       </td>
+      <td>{{ sc.get_type_display }}</td>
+      <td>{{ sc.get_pp_display }}</td>
+      {% if user.is_authenticated %}
+      <td><a href="school/{{ sc.id }}/update">編輯</a></td>
+      <td><a href="school/{{ sc.id }}/delete">刪除</a></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

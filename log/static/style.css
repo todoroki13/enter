@@ -2,7 +2,18 @@ html,body{
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 20px 50px;
+    padding: 20px 50px 0 50px;
+}
+
+body{
+    position: relative;
+}
+
+.wrapper {
+    /* 設定高度最小為100%, 如果內容區塊很多, 可以長大 */
+    min-height: 100%;
+    /* 位置設為relative, 作為footer區塊位置的參考 */
+    position: relative;
 }
 
 h1{
@@ -72,4 +83,65 @@ h1:hover{
 
 .func a:hover, .create a:hover, .log:hover a{
     color: white;
+}
+
+h3{
+    margin-bottom: 15px;
+}
+
+h4{
+    margin-top: 10px;
+}
+
+.down{
+    height: 90px;
+}
+
+.footer {
+    /* 設定footer的高度 */
+    height: 35px;
+    box-sizing: border-box;
+    /* 設定footer絕對位置在底部 */
+    position: absolute;
+    bottom: 0px;
+    /* 展開footer寬度 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer p,.footer a{
+    padding: 5px;
+    color: rgb(146, 146, 146);
+    font-size: 15px;
+    display: inline;
+}
+
+.disc{
+    padding: 3px 0 3px 20px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 4px;
+}
+
+.cancel{
+    padding: 2px 5px;
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(65, 76, 228);
+    border-radius: 4px;
+}
+
+.cancel:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 52, 226);
+}
+
+.chan{
+    padding: 1px;
+    border-radius: 5px;
+    border: rgb(43, 110, 255) 2px solid;
 }
