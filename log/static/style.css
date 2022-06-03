@@ -9,6 +9,15 @@ body{
     position: relative;
 }
 
+li{
+    list-style: none;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 .wrapper {
     /* 設定高度最小為100%, 如果內容區塊很多, 可以長大 */
     min-height: 100%;
@@ -145,3 +154,4 @@ h4{
     border-radius: 5px;
     border: rgb(43, 110, 255) 2px solid;
 }
+

@@ -172,6 +172,19 @@ p{
     color: white;
 }
 
+.webdesc{
+    border: rgb(149, 0, 235) 5px solid;
+    padding: 20px 25px;
+    margin: 10px;
+    flex: 7.5;
+    border-radius: 20px;
+}
+
+.webdesc label{
+    color: rgb(149, 0, 235);
+    font-size: 50px;
+}
+
 .news{
     border: rgb(84, 235, 255) 5px solid;
     padding: 20px 25px;
