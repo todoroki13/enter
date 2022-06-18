@@ -1,3 +1,4 @@
+from pprint import pp
 from pyexpat import model
 from re import template
 from turtle import home
@@ -166,22 +167,22 @@ class LogListSchool(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('query')
+        query1 = self.request.GET.get('query1')
+        query2 = self.request.GET.get('query2')
         if query:
             item = School.objects.filter(name__icontains=query)
-            if query == '高中' or query == '高' or query == '中':
-                item = item | School.objects.filter(type__icontains=0)
-            if query == '高職' or query == '高' or query == '職':
-                item = item | School.objects.filter(type__icontains=1)
-            if query == '五專' or query == '五' or query == '專':
-                item = item | School.objects.filter(type__icontains=2)
-            if query == '綜高' or query == '綜' or query == '高':
-                item = item | School.objects.filter(type__icontains=3)
-            if query == '公立' or query == '公' or query == '立':
-                item = item | School.objects.filter(pp__icontains=0)
-            if query == '私立' or query == '私' or query == '立':
-                item = item | School.objects.filter(pp__icontains=1)
-        else:
+        if query1:
+            if query1 != "none" and query2 != "none":
+                item = School.objects.filter(pp=int(query1),type=int(query2))
+            elif query1 != "none":
+                item = School.objects.filter(pp=int(query1))
+            elif query2 != "none":
+                item = School.objects.filter(type=int(query2))
+            else:
+                item = School.objects
+        if (not query) and (not query1) and (not query2):
             item = School.objects
+
         return item.order_by('name')
 
     def get_context_data(self, **kwargs):

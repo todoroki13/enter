@@ -8,7 +8,25 @@
     <input type="submit" class="form-control btn btn-primary" value="篩選"/>
   </div>  
 </form>
-<label>(亦可輸入學校類型、公立/私立查詢)</label>
+
+<form action=""  method="get">
+  <div class="form-inline form-group">
+    <select name="query2" >
+      <option value="none">-------<br>
+      <option value="0">高中<br>
+      <option value="1">高職<br>
+      <option value="2">五專<br>
+      <option value="3">綜高<br>
+    </select>
+    <select name="query1" >
+      <option value="none">-------<br>
+      <option value="0">公立<br>
+      <option value="1">私立<br>
+    </select>
+    <input type="submit" class="form-control btn btn-primary" value="篩選"/>
+  </div>  
+</form>
+
 <table class="table table-sm table-hover">
   <thead>
     <tr class="text-center">
